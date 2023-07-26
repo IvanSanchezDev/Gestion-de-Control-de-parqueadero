@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<link rel="stylesheet" href="static/styles/styleLogin.css" th:href="@{/styles/styleLogin.css}">
+</head>
+
+<body >
+
+	<div class="container">
+		
+		<div class="titulo">
+			<h1 class="font-weight-bold">Sistema de gestión gerencial, control y recaudo de parqueaderos.</h1>
+			
+		</div>
+		
+		
+		<div class="login-content">
+			<form th:action="@{/login}" method="POST">
+				<img src="img/avatar.svg">
+				<h2 class="title font-weight-bold">Bienvenido</h2>
+				<div class="input-div one">
+
+					<div class="i">
+						<i class="fas fa-user"></i>
+					</div>
+					<div class="div">
+						
+						<input type="text" name="username" class="input" id="username" placeholder="Nombre de Usuario" required />
+					</div>
+
+				</div>
+
+				<div class="input-div pass">
+
+					<div class="i">
+						<i class="fas fa-lock"></i>
+					</div>
+					<div class="div">
+						
+						<input type="password" name="password" class="input" id="password" placeholder="Contraseña" required />
+					</div>
+
+				</div>
+
+
+				<input type="submit" class="btn" value="Login" />
+
+				<div style="background: #F8D7DA" th:if="${error != null}" th:text="${error}"></div>
+				<div style="background: #D1E7DD" th:if="${success != null}" th:text="${success}"></div>
+			</form>
+			
+			
+		</div>
+	</div>
+
+
+
+	
+
+
+
+
+
+
+</body>
+
+</html>

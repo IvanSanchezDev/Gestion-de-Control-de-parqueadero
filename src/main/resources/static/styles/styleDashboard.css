@@ -1,0 +1,29 @@
+
+
+
+.content{
+	overflow-y:auto;
+	height:100vh;
+	padding-bottom: 5rem;
+	margin-left: 18rem;
+	
+}
+
+.tituloDashboard{
+	color: #707070;
+}
+
+/*BORDES ENTRE LAS CARD*/
+.stat{
+	border-right: 1px solid gray;
+}
+
+.card{
+    box-shadow: 5px 5px 30px #48529944;
+}
+
+.tabla{
+	margin-left: -7rem;
+	width:80%;
+	
+}

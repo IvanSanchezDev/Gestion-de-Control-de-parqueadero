@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es">
+
+<head th:replace="layouts/sidebarAdmin :: headTemplate">
+
+
+
+</head>
+
+<body style="background: #E4E9F7" onload="javascript:openModal()">
+
+	<div class="d-flex">
+
+		<div th:replace="layouts/sidebarAdmin :: sidebarAdmin"></div>
+
+		<div class="w-100">
+
+
+			<div class="main">
+				<section class="titulo">
+					<div class="container mb-2">
+						<div class="text-center mt-2">Manejo de Tarifas</div>
+					</div>
+				</section>
+
+
+
+
+				<br> <br>
+
+
+
+
+				<div class="container">
+					<div class="alertas text-center">
+
+						<div class="alert alert-success" th:if="${success!=null}" th:text="${success}"></div>
+						<div class="alert alert-danger" th:if="${error!=null}" th:text="${error}"></div>
+
+					</div>
+				</div>
+
+
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Actualizar Tarifa</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form th:action="@{/guardarTarifa}" class="formularioMensualidades" th:object=${tarifa}
+									method="POST">
+
+									<input type="hidden" th:field="*{id}" />
+									<div class="form-group">
+										<label class="text-center">Tipo de vehiculo</label>
+										<input th:field="*{tipo_vehiculo}" type="text" class="form-control" />
+
+									</div>
+									<div class="form-group">
+										<label>Valor Hora</label>
+										<input th:field="*{valor_hora}" type="text" class="form-control" />
+
+									</div>
+
+									<div class="form-group">
+										<label>Valor Mes</label>
+										<input th:field="*{valor_mes}" type="text" class="form-control" />
+									</div>
+
+
+
+
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-secondary">Guardar</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+				<div class="container">
+
+					<div class="table-responsive-sm">
+
+						<table class="table  table-light table-striped table-bordered">
+							<thead class="thead-dark text-center">
+								<tr>
+									<th>Id</th>
+									<th>Tipo de Vehiculo</th>
+									<th>Valor Hora</th>
+									<th>Valor Mes</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody  class="text-center">
+								<tr th:each="tarifa:${tarifas}">
+									<td th:text="${tarifa.id}"></td>
+									<td th:text="${tarifa.tipo_vehiculo}"></td>
+									<td th:text="${tarifa.valor_hora}"></td>
+
+									<td th:text="${tarifa.valor_mes}"></td>
+									<td>
+
+									<div class="row">
+										<a sec:authorize="hasRole('ROLE_ADMIN')"
+											th:href="@{/editarTarifa/}+${tarifa.id}" class="btn btn-secondary btn-lg ml-4 mr-3">
+											<i class='bx bx-edit mt-2'></i></a>
+
+										<a sec:authorize="hasRole('ROLE_ADMIN')"
+											th:href="@{/eliminarTarifa/}+${tarifa.id}" class="btn btn-primary btn-lg"
+											onclick="return confirm('Estas seguro que quiere eliminar?')"><i
+												class='bx bx-message-square-x'></i></a>
+
+									</div>
+
+									</td>
+
+								</tr>
+
+
+							</tbody>
+
+
+						</table>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+
+	<script th:inline="javascript">
+
+
+		function openModal() {
+
+			var showModal = /*[[${showModal}]]*/ false;
+			if (showModal) {
+				$('#exampleModal').modal('show');
+			}
+		}
+
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>
