@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+
+<head  th:replace="layouts/sidebarAdmin :: headTemplate">
+
+
+</head>
+
+<body style="background: #E4E9F7">
+
+	<div class="d-flex">
+
+		<div th:replace="layouts/sidebarAdmin :: sidebarAdmin"></div>
+
+		<div class="w-100">
+
+
+			<div class="main">
+				<section class="titulo">
+					<div class="container mb-2">
+						<div class="text-center mt-2">ESTADISTICAS ADMIN</div>
+					</div>
+				</section>
+
+				<br> <br>
+
+				<div class="container text-center">
+
+					<div class="estadisticas ">
+					
+								<div class="subtitulo">
+									<div class="text-center mt-2 mb-5">Seleccionar Filtro</div>
+								</div>
+							<form class="formularioEstadisticas" th:action="@{/report/cantidadVehiculos}">
+							
+							<div class="row fecha">
+							
+								<div class="form-group mb-2">
+									<h4 class="font-weight-bold">Fecha Inicio:</h4>
+								</div>
+								<div class="form-group mx-sm-3 mb-2">
+									<input type="date" name="FechaInicio" th:value="${FechaInicio}" class="form-control">
+								</div>
+								
+								<div class="form-group mb-2">
+									<h4 class="font-weight-bold">Fecha Fin:</h4>
+								</div>
+								<div class="form-group mx-sm-3 mb-2">
+									<input type="date" name="FechaFin" th:value="${FechaFin}" class="form-control">
+								</div>
+							
+							</div>
+								
+								
+								<div>
+									<i class='bx bxs-bar-chart-alt-2 icono' ></i>
+								</div>
+								
+								
+								<input type="submit" class="btn btn-secondary mb-2 " value="Descargar">
+								&nbsp;&nbsp;
+								<input type="button" class="btn btn-secondary mb-2 " value="Limpiar"
+									onclick="limpiarCampos()">
+							</form>
+
+						</div>
+		
+					
+
+
+
+				</div>
+
+
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+
+	<script type="text/javascript">
+
+		function limpiarCampos() {
+			window.location = '/admin/estadisticas';
+		}
+
+
+	</script>
+	
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es">
+
+<head th:replace="layouts/sidebarAdmin :: headTemplate">
+
+	
+
+	
+
+
+
+
+</head>
+
+<body class="body">
+
+	<div class="d-flex">
+
+		<div th:replace="layouts/sidebarAdmin :: sidebarAdmin"></div>
+
+
+
+		<div class="w-100">
+			<div class="main">
+				<section class="titulo">
+					<div class="container mb-2">
+						<div class="text-center mt-2">PANEL DE REGISTROS</div>
+					</div>
+				</section>
+
+
+
+
+				<section class="modulos py-5">
+					<div class="container container-sm">
+						<div class=" overview-boxes">
+							<div class="row box ">
+								<div class="col-6 ingreso">
+
+									<h1 class="subtituloo font-weight-bold">Registro</h1>
+
+									<form th:action="@{/guardarVehiculo}" th:object=${vehiculo} method="POST">
+
+										<input type="hidden" th:field="*{id_vehiculo}" />
+										<div class="form-group">
+											<input type="text" th:field="*{placa}"
+												class="form-control  inputPlaca input-group-lg mt-4" id="placa"
+												th:errorclass="'alert-danger'" autofocus required>
+											<small class="form-text text-danger" th:if="${#fields.hasErrors('placa')}"
+												th:errors="*{placa}"></small>
+										</div>
+										<div class="mt-4">
+											<h3 class="ml-5">Tipo de Vehiculo</h3>
+										</div>
+
+										<div class="mt-5">
+											<div class="form-check-inline ">
+												<span class="imagen">
+													<img src="/img/carro.PNG" alt="logo">
+												</span>
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" id="carro"
+														th:field="*{tipo_vehiculo}" value="carro">Carro
+												</label>
+											</div>
+											<div class="form-check-inline ">
+
+												<span class="imagen ml-2">
+													<img src="/img/moto.PNG" alt="logo">
+												</span>
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" id="moto"
+														th:field="*{tipo_vehiculo}" value="moto">Moto
+												</label>
+											</div>
+										</div>
+
+										<div class="row ml-3">
+											<button type="submit" value="Enviar" class="border mt-5 ml-5"
+												onclick="mostrarToast()">Aceptar</button>
+										</div>
+
+										<div class="alert alert-danger mt-2" th:if="${error != null}"
+											th:text="${error}"></div>
+
+
+									</form>
+
+
+								</div>
+
+
+								<div class="col-6  salida">
+
+
+									<div>
+
+										<h1 class=" font-weight-bold subtituloo">Valor a pagar:</h1>
+										<div class="valor mt-4 mb-4 text-center">
+											<h1 th:text="${vehiculoo.valor_pagado}"></h1>
+										</div>
+										<div class="detalles mt-5">
+											<div class="row">
+												<h3 class="font-weight-bold ml-3">Placa:</h3>
+												<h3 class="ml-5" th:text="${vehiculoo.placa}"></h3>
+											</div>
+											<div class="row">
+												<h3 class="font-weight-bold ml-3">Hora Entrada:</h3>
+												<h4 class="ml-3" th:text="${vehiculoo.hora_entrada}"></h4>
+											</div>
+											<div class="row">
+												<h3 class="font-weight-bold ml-3">Hora Salida:</h3>
+												<h4 class="ml-3" th:text="${vehiculoo.hora_salida}"></h4>
+
+											</div>
+											<div class="row">
+												<h3 class="font-weight-bold ml-3">Empleado:</h3>
+												<h4 class="ml-3" sec:authentication="name"></h4>
+
+											</div>
+										</div>
+
+
+
+
+
+									</div>
+
+									<div>
+										<form th:action="@{/ticketSalida}">
+											<button type="submit" class="border mt-5 ml-5 text">Imprimir Ticket<i class='bx bxs-file-pdf mt-2 ml-2'></i></button>
+
+										</form>
+
+
+									</div>
+
+
+
+
+
+								</div>
+
+
+
+
+							</div>
+
+
+						</div>
+					</div>
+				</section>
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="position-fixed btnwpp">
+		<a th:href="@{/dashboard}"> <img src="img/logo.png" class="img-fluid"></a>
+
+	</div>
+
+	<div class="toastt">
+
+		<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<h4><i class='bx bxs-traffic mr-2 mt-2'></i></h4>
+				<strong class="mr-auto">Espacio Disponible:</strong>
+				<h6 class="ml-3 mt-2" th:text="${disponibilidad}"></h6>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+	<script src="js/script.js"></script>
+	<script src="js/scriptRegistro.js"></script>
+
+
+
+</body>
+
+</html>
